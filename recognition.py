@@ -7,6 +7,7 @@ import os
 
 
 #region variables
+
 path = 'images'  # The name of folder of images
 images = [] # an empty list for putting each known image in it 
 names = [] # an empty list for putting each name of images
@@ -72,6 +73,14 @@ while (cap.isOpened()): # While the webcam works correctly and if has no problem
             cv2.rectangle(frame, (x1,y1), (x2,y2), (255,0,255),2) # Draw a rectangle around the recognized faces
             cv2.rectangle(frame, (x1,y2-20), (x2,y2), (255,0,255),cv2.FILLED) # Draw a Filled rectangle
             cv2.putText(frame, name, (x1+4, y2-4), cv2.FONT_HERSHEY_COMPLEX, 0.5, (255,255,255),1) # write down the name of face in the Filled rectangle that we has drawn
+
+        else: # This Condition is for Unknown faces
+            y1,x2,y2,x1 = faceLoc # define the points of location of faces
+            y1,x2,y2,x1 = y1*4 , x2*4 , y2*4 , x1*4 # because we resized the frame , now we have to multiply it by 4
+
+            cv2.rectangle(frame, (x1,y1), (x2,y2), (255,0,255),2) # Draw a rectangle around the recognized faces
+            cv2.rectangle(frame, (x1,y2-20), (x2,y2), (255,0,255),cv2.FILLED) # Draw a Filled rectangle
+            cv2.putText(frame, 'Unknown Face', (x1+4, y2-4), cv2.FONT_HERSHEY_COMPLEX, 0.5, (255,255,255),1) # write down the name of face in the Filled rectangle that we has drawn
 
 
     cv2.imshow('output', frame) # show the output
