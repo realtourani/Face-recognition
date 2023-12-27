@@ -1,7 +1,7 @@
 # Face-recognition
 face recognition with python and the face recognition library
 
-############
+
 
 At the first you have to install the necessary packages :
 - pip install opencv-python
